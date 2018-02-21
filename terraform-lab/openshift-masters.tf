@@ -32,7 +32,7 @@ resource "digitalocean_droplet" "masters" {
       "${digitalocean_tag.openshift-cluster-name.id}",
       "${digitalocean_tag.openshift-cluster-master-combo.id}"
     ]
-    user_data = "${file("cloud-init.conf")}"
+    user_data = "${file("scripts/cloud-init.conf")}"
 
     # https://github.com/hashicorp/terraform/issues/2811        
     provisioner "remote-exec" {
