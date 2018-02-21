@@ -1,7 +1,7 @@
 resource "digitalocean_firewall" "rules" {
   name = "${var.cluster_name}"
 
-  tags = ["${var.cluster_name}-master", "${var.cluster_name}-worker"]
+  tags = ["${var.cluster_name}-master", "${var.cluster_name}-worker", "${var.cluster_name}-jumphost"]
 
   # allow ssh, http/https ingress, and peer-to-peer traffic
   inbound_rule = [
@@ -23,12 +23,20 @@ resource "digitalocean_firewall" "rules" {
     {
       protocol    = "udp"
       port_range  = "1-65535"
-      source_tags = ["${digitalocean_tag.openshift-cluster-master-combo.name}", "${digitalocean_tag.openshift-cluster-worker-combo.name}"]
+      source_tags = [
+        "${digitalocean_tag.openshift-cluster-master-combo.name}", 
+        "${digitalocean_tag.openshift-cluster-worker-combo.name}", 
+        "${digitalocean_tag.jumphost.name}"
+      ]
     },
     {
       protocol    = "tcp"
       port_range  = "1-65535"
-      source_tags = ["${digitalocean_tag.openshift-cluster-master-combo.name}", "${digitalocean_tag.openshift-cluster-worker-combo.name}"]
+      source_tags = [
+        "${digitalocean_tag.openshift-cluster-master-combo.name}", 
+        "${digitalocean_tag.openshift-cluster-worker-combo.name}", 
+        "${digitalocean_tag.jumphost.name}"
+      ]
     },
   ]
 

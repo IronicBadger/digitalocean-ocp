@@ -37,7 +37,12 @@ variable "region" {
     default = "ams3"
 }
 
-variable "size" {
+variable "size_master" {
+    description = "Execute `doctl compute size list` for possible values"
+    default = "s-1vcpu-1gb" 
+}
+
+variable "size_worker" {
     description = "Execute `doctl compute size list` for possible values"
     default = "s-1vcpu-1gb" 
 }
@@ -71,4 +76,8 @@ resource "digitalocean_tag" "openshift-cluster-master-combo" {
 
 resource "digitalocean_tag" "openshift-cluster-worker-combo" {
   name = "${var.cluster_name}-worker"
+}
+
+resource "digitalocean_tag" "jumphost" {
+  name = "${var.cluster_name}-jumphost"
 }

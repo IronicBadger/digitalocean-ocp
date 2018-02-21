@@ -1,0 +1,11 @@
+- hosts: all
+  remote_user: root
+  gather_facts: yes
+
+  tasks:
+    - name: upgrade atomic_host
+      atomic_host: revision=latest
+
+    - name: reboot host into updated ostree
+      shell: "systemctl reboot"
+      ignore_errors: true

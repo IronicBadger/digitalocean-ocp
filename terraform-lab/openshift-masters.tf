@@ -19,17 +19,27 @@ resource "digitalocean_droplet" "masters" {
     region              = "${var.region}"
 
     image               = "${var.image}"
-    size                = "${var.size}"
+    size                = "${var.size_master}"
     private_networking  = "${var.private_networking}"
     ssh_keys = [
       17525420,
-      3296803
+      3296803,
+      18403719
     ]
     tags = [
-        "${digitalocean_tag.openshift-node.id}",
-        "${digitalocean_tag.openshift-role-master.id}",
-        "${digitalocean_tag.openshift-cluster-name.id}",
-        "${digitalocean_tag.openshift-cluster-master-combo.id}"
+      "${digitalocean_tag.openshift-node.id}",
+      "${digitalocean_tag.openshift-role-master.id}",
+      "${digitalocean_tag.openshift-cluster-name.id}",
+      "${digitalocean_tag.openshift-cluster-master-combo.id}"
     ]
+    user_data = "${file("cloud-init.conf")}"
 
+    # https://github.com/hashicorp/terraform/issues/2811        
+    provisioner "remote-exec" {
+        script = "scripts/update_atomic.sh"
+    }
+    # wait for boot
+    provisioner "remote-exec" {
+        script = "scripts/wait_for_boot.sh"
+    }
 }

@@ -1,0 +1,8 @@
+- hosts:
+    - "{{ ip }}"
+  remote_user: root
+  gather_facts: yes
+
+  tasks:    
+    - name: test
+      shell: echo "blah"
