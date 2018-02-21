@@ -4,7 +4,7 @@ resource "digitalocean_record" "jumphost" {
   # DNS zone where record should be created
   domain = "${var.domain_name}"
 
-  name  = "jumphost"
+  name  = "jump"
   type  = "A"
   ttl   = 300
   value = "${digitalocean_droplet.jumphost.ipv4_address}"
@@ -41,4 +41,8 @@ resource "digitalocean_droplet" "jumphost" {
     provisioner "remote-exec" {
         script = "scripts/wait_for_boot.sh"
     }
+}
+
+output "jumphost_fqdn" {
+    value = "${digitalocean_record.jumphost.fqdn}"
 }
