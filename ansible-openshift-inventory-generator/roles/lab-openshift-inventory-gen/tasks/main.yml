@@ -1,0 +1,7 @@
+---
+# tasks file for ocp-inventory-gen
+  - name: write inventory file
+    template:
+      src: ../templates/inventory_lab_origin.j2
+      dest: inventory/static/lab_openshift_inventory
+    delegate_to: localhost

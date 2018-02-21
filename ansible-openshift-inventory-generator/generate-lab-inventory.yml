@@ -1,0 +1,9 @@
+---
+ - hosts: lab
+   gather_facts: true
+   #become: yes
+   user: root
+
+ - hosts: localhost
+   roles:
+      - { role: roles/lab-openshift-inventory-gen }
