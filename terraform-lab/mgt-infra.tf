@@ -19,14 +19,20 @@ resource "digitalocean_droplet" "jumphost" {
     size                = "s-1vcpu-1gb"
     private_networking  = "${var.private_networking}"
     ssh_keys = [
-      17525420,
-      3296803,
-      18403719
+      17525420, # ktzTP
+      3296803,  # rMBP
+      18403719  # origin
     ]
     tags = [
         "${digitalocean_tag.jumphost.id}",
         "${digitalocean_tag.openshift-cluster-name.id}"
     ]
+
+    # Copies passphrase-less private key to jumphost
+    provisioner "file" {
+      source      = "/home/alex/.ssh/origin"
+      destination = "/root/.ssh/id_rsa"
+    }
 
     # https://github.com/hashicorp/terraform/issues/2811    
     provisioner "remote-exec" {

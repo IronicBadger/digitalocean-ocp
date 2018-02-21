@@ -22,9 +22,9 @@ resource "digitalocean_droplet" "masters" {
     size                = "${var.size_master}"
     private_networking  = "${var.private_networking}"
     ssh_keys = [
-      17525420,
-      3296803,
-      18403719
+      17525420, # ktzTP
+      3296803,  # rMBP
+      18403719  # origin
     ]
     tags = [
       "${digitalocean_tag.openshift-node.id}",
