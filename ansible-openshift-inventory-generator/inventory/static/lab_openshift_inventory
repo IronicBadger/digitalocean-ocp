@@ -16,17 +16,18 @@ etcd
 ### Ansible configuration
 ansible_user=root
 ansible_become=False
-ansible_ssh_private_key_file=/root/.ssh/id_rsa
+ansible_ssh_private_key_file=/opt/app-root/src/.ssh/id_rsa
+ansible_python_interpreter=/usr/local/Cellar/ansible/2.4.3.0_1/libexec/bin/python2.7
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 debug_level=2
 
 ### Openshift deployment configuration
 openshift_deployment_type=origin
 containerized=True
-openshift_release=v3.9
+openshift_release=v3.7
 
 ### General configuration
-#openshift_image_tag=
+#openshift_image_tag=latest
 #openshift_pkg_version=-3.7.0
 openshift_install_examples=True
 #openshift_master_image_policy_config={"maxImagesBulkImportedPerRepository": 3, "disableScheduledImport": true}
@@ -39,7 +40,7 @@ openshift_master_external_ratelimit_burst=400
 #openshift_master_loopback_ratelimit_burst=600
 
 ### Docker Configuration
-openshift_docker_additional_registries=registry.example.com
+#openshift_docker_additional_registries=registry.example.com
 #openshift_docker_insecure_registries=registry.example.com
 #openshift_docker_blocked_registries=registry.hacker.com
 #openshift_docker_disable_push_dockerhub=True
@@ -402,7 +403,9 @@ openshift_master_audit_config={"enabled": true, "auditFilePath": "/var/log/audit
 ## Masters
 
 [masters]
-159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
+188.166.94.83 openshift_hostname=188.166.94.83 openshift_dns_ip=188.166.94.83
+188.166.96.77 openshift_hostname=188.166.96.77 openshift_dns_ip=188.166.96.77
+188.166.98.37 openshift_hostname=188.166.98.37 openshift_dns_ip=188.166.98.37
 
 [masters:vars]
 openshift_node_labels={'purpose': 'master', 'region': 'primary', 'router': 'true'}
@@ -411,7 +414,9 @@ openshift_schedulable=false
 
 ## ETCD
 [etcd]
-159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
+188.166.94.83 openshift_hostname=188.166.94.83 openshift_dns_ip=188.166.94.83
+188.166.96.77 openshift_hostname=188.166.96.77 openshift_dns_ip=188.166.96.77
+188.166.98.37 openshift_hostname=188.166.98.37 openshift_dns_ip=188.166.98.37
 
 [etcd:vars]
 openshift_node_labels={'purpose': 'etcd', 'region': 'primary'}
@@ -420,7 +425,8 @@ openshift_schedulable=false
 
 ## Infra nodes
 [infra_nodes]
-159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
+188.166.81.111 openshift_hostname=188.166.81.111 openshift_dns_ip=188.166.81.111
+188.166.82.110 openshift_hostname=188.166.82.110 openshift_dns_ip=188.166.82.110
 
 [infra_nodes:vars]
 openshift_node_labels={'purpose': 'infra', 'region': 'primary'}
@@ -428,8 +434,8 @@ openshift_node_labels={'purpose': 'infra', 'region': 'primary'}
 
 ## App nodes
 [app_nodes]
-159.65.204.14 openshift_hostname=159.65.204.14 openshift_dns_ip=159.65.204.14
-174.138.13.71 openshift_hostname=174.138.13.71 openshift_dns_ip=174.138.13.71
+188.166.89.194 openshift_hostname=188.166.89.194 openshift_dns_ip=188.166.89.194
+188.166.96.99 openshift_hostname=188.166.96.99 openshift_dns_ip=188.166.96.99
 
 [app_nodes:vars]
 openshift_node_labels={'purpose': 'work', 'region': 'primary'}

@@ -1,0 +1,11 @@
+---
+
+- name: update atomic host
+  atomic_host:
+    revision: latest
+
+- name: reboot the host
+  shell: /sbin/shutdown -r +1
+  async: 0
+  poll: 0
+  ignore_errors: true

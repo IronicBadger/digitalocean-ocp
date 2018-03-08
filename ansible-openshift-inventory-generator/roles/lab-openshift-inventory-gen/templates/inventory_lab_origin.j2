@@ -425,7 +425,7 @@ openshift_schedulable={{ openshift_schedulable_etcd }}
 
 ## Infra nodes
 [infra_nodes]
-{% for item in groups['lab-master'] | sort %}
+{% for item in groups['lab-infra'] | sort %}
 {{ item }} openshift_hostname={{ item }} openshift_dns_ip={{hostvars[item]['ansible_default_ipv4']['address']}}
 {% endfor %}
 
@@ -435,7 +435,7 @@ openshift_node_labels={{ openshift_node_labels_infra }}
 
 ## App nodes
 [app_nodes]
-{% for item in groups['worker'] | sort %}
+{% for item in groups['lab-worker'] | sort %}
 {{ item }} openshift_hostname={{ item }} openshift_dns_ip={{hostvars[item]['ansible_default_ipv4']['address']}}
 {% endfor %}
 

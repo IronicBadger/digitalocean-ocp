@@ -45,6 +45,12 @@ resource "digitalocean_droplet" "bastion" {
     provisioner "remote-exec" {
         script = "scripts/set_sshkey_perms.sh"
     }
+    # install python so that ansible can run
+    provisioner "remote-exec" {
+        inline = [
+            "dnf install python -y",
+        ]
+    }
 
     # # https://github.com/hashicorp/terraform/issues/2811    
     # provisioner "remote-exec" {

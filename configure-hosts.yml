@@ -1,0 +1,18 @@
+---
+  - hosts: lab
+    gather_facts: true
+    #become: yes
+    user: root
+
+  - hosts: bastion
+    user: root
+    roles:
+      - { role: ansible-openshift-prepare-hosts/roles/configure-bastion }
+  
+  # assumes all nodes are fedora atomic host
+  - hosts: cluster
+    user: root
+    roles:
+      - { role: ansible-openshift-prepare-hosts/roles/configure-atomic-hosts }
+      
+  # you should now be ready to login to the bastion and run config.yml ! :)

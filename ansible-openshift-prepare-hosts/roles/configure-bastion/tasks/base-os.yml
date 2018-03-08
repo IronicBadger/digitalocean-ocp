@@ -19,3 +19,7 @@
     - tree
     - wget
     - libselinux-python
+    - pyOpenSSL 
+    - python-cryptography 
+    - python-lxml
+    - atomic

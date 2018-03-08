@@ -1,7 +1,13 @@
 ---
 # tasks file for ocp-inventory-gen
-  - name: write inventory file
+  - name: write cluster inventory file
     template:
       src: ../templates/inventory_lab_origin.j2
       dest: inventory/static/lab_openshift_inventory
+    delegate_to: localhost
+
+  - name: write host maintenance inventory file
+    template:
+      src: ../templates/inventory_lab_maintenance.j2
+      dest: inventory/static/lab_openshift_inventory_maintenance
     delegate_to: localhost

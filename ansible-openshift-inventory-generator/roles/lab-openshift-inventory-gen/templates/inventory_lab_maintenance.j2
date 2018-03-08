@@ -1,0 +1,30 @@
+[lab:children]
+masters
+app_nodes
+infra_nodes
+bastion
+
+[cluster:children]
+masters
+app_nodes
+infra_nodes
+
+[masters]
+{% for item in groups['lab-master'] | sort %}
+{{ item }}
+{% endfor %}
+
+[infra_nodes]
+{% for item in groups['lab-infra'] | sort %}
+{{ item }}
+{% endfor %}
+
+[app_nodes]
+{% for item in groups['lab-worker'] | sort %}
+{{ item }}
+{% endfor %}
+
+[bastion]
+{% for item in groups['lab-bastion'] | sort %}
+{{ item }}
+{% endfor %}

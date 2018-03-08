@@ -1,0 +1,7 @@
+---
+
+- name: clone openshift-ansible installation playbooks
+  git:
+    repo: "https://github.com/openshift/openshift-ansible"
+    dest: /opt/openshift-ansible
+    version: release-3.7

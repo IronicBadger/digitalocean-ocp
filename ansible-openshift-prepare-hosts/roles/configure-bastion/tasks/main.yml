@@ -1,0 +1,8 @@
+---
+
+- name: configure base-os
+  include: base-os.yml
+
+- name: openshift-ansible
+  include: openshift-ansible.yml
+  

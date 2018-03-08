@@ -1,0 +1,4 @@
+---
+
+- name: update atomic hosts
+  include: update-hosts.yml
