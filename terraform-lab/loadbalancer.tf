@@ -16,7 +16,7 @@ resource "digitalocean_loadbalancer" "master_public" {
         protocol = "tcp"
     }
 
-    droplet_ids = ["${digitalocean_droplet.masters.id}"]
+    droplet_ids = ["${digitalocean_droplet.masters.*.id}"]
 }
 
 # Main Cluster DNS entry

@@ -7,7 +7,7 @@ variable "cluster_name" {
 
 variable "master_count" {
   type        = "string"
-  default     = "1"
+  default     = "3"
   description = "Number of masters"
 }
 
@@ -15,6 +15,12 @@ variable "worker_count" {
   type        = "string"
   default     = "2"
   description = "Number of app / worker nodes"
+}
+
+variable "infra_count" {
+  type        = "string"
+  default     = "2"
+  description = "Number of infra nodes"
 }
 
 ### DNS vars
@@ -47,6 +53,11 @@ variable "size_worker" {
     default = "s-1vcpu-1gb" 
 }
 
+variable "size_infra" {
+    description = "Execute `doctl compute size list` for possible values"
+    default = "s-1vcpu-1gb"
+}
+
 variable "private_networking" {
     description = "True or False for private inter-droplet networking"
     default = "true"
@@ -66,6 +77,10 @@ resource "digitalocean_tag" "openshift-role-worker" {
   name = "worker"
 }
 
+resource "digitalocean_tag" "openshift-role-infra" {
+  name = "infra"
+}
+
 resource "digitalocean_tag" "openshift-cluster-name" {
   name = "${var.cluster_name}"
 }
@@ -78,6 +93,10 @@ resource "digitalocean_tag" "openshift-cluster-worker-combo" {
   name = "${var.cluster_name}-worker"
 }
 
-resource "digitalocean_tag" "jumphost" {
-  name = "${var.cluster_name}-jumphost"
+resource "digitalocean_tag" "openshift-cluster-infra-combo" {
+  name = "${var.cluster_name}-infra"
+}
+
+resource "digitalocean_tag" "bastion" {
+  name = "${var.cluster_name}-bastion"
 }

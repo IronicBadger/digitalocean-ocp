@@ -1,7 +1,7 @@
 resource "digitalocean_firewall" "rules" {
   name = "${var.cluster_name}"
 
-  tags = ["${var.cluster_name}-master", "${var.cluster_name}-worker", "${var.cluster_name}-jumphost"]
+  tags = ["${var.cluster_name}-master", "${var.cluster_name}-worker", "${var.cluster_name}-infra", "${var.cluster_name}-bastion"]
 
   # allow ssh, http/https ingress, and peer-to-peer traffic
   inbound_rule = [
@@ -26,7 +26,8 @@ resource "digitalocean_firewall" "rules" {
       source_tags = [
         "${digitalocean_tag.openshift-cluster-master-combo.name}", 
         "${digitalocean_tag.openshift-cluster-worker-combo.name}", 
-        "${digitalocean_tag.jumphost.name}"
+        "${digitalocean_tag.openshift-cluster-infra-combo.name}", 
+        "${digitalocean_tag.bastion.name}"
       ]
     },
     {
@@ -35,7 +36,8 @@ resource "digitalocean_firewall" "rules" {
       source_tags = [
         "${digitalocean_tag.openshift-cluster-master-combo.name}", 
         "${digitalocean_tag.openshift-cluster-worker-combo.name}", 
-        "${digitalocean_tag.jumphost.name}"
+        "${digitalocean_tag.openshift-cluster-infra-combo.name}", 
+        "${digitalocean_tag.bastion.name}"
       ]
     },
   ]

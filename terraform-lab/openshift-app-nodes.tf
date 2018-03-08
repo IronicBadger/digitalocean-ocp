@@ -34,12 +34,16 @@ resource "digitalocean_droplet" "workers" {
     ]
     user_data = "${file("scripts/cloud-init.conf")}"
 
-    # https://github.com/hashicorp/terraform/issues/2811        
-    provisioner "remote-exec" {
-        script = "scripts/update_atomic.sh"
-    }
-    # wait for boot
-    provisioner "remote-exec" {
-        script = "scripts/wait_for_boot.sh"
-    }
+    # # required on MacOS as SSH agent is not respected! :(
+    # connection {
+    #     private_key = "${file("/Users/alex/.ssh/id_rsa")}"
+    # }
+    # # https://github.com/hashicorp/terraform/issues/2811        
+    # provisioner "remote-exec" {
+    #     script = "scripts/update_atomic.sh"
+    # }
+    # # wait for boot
+    # provisioner "remote-exec" {
+    #     script = "scripts/wait_for_boot.sh"
+    # }
 }
