@@ -16,16 +16,17 @@ etcd
 ### Ansible configuration
 ansible_user=root
 ansible_become=False
-ansible_ssh_private_key_file=/root/roles/lab-ocp-inventory-gen/files/ocp_lab.pem
+ansible_ssh_private_key_file=/root/.ssh/id_rsa
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 debug_level=2
 
 ### Openshift deployment configuration
 openshift_deployment_type=origin
 containerized=True
-openshift_release=v3.7
+openshift_release=v3.9
 
 ### General configuration
-#openshift_image_tag=0
+#openshift_image_tag=
 #openshift_pkg_version=-3.7.0
 openshift_install_examples=True
 #openshift_master_image_policy_config={"maxImagesBulkImportedPerRepository": 3, "disableScheduledImport": true}
@@ -401,7 +402,7 @@ openshift_master_audit_config={"enabled": true, "auditFilePath": "/var/log/audit
 ## Masters
 
 [masters]
-174.138.11.213 openshift_hostname=174.138.11.213 openshift_dns_ip=174.138.11.213
+159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
 
 [masters:vars]
 openshift_node_labels={'purpose': 'master', 'region': 'primary', 'router': 'true'}
@@ -410,7 +411,7 @@ openshift_schedulable=false
 
 ## ETCD
 [etcd]
-174.138.11.213 openshift_hostname=174.138.11.213 openshift_dns_ip=174.138.11.213
+159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
 
 [etcd:vars]
 openshift_node_labels={'purpose': 'etcd', 'region': 'primary'}
@@ -419,7 +420,7 @@ openshift_schedulable=false
 
 ## Infra nodes
 [infra_nodes]
-174.138.11.213 openshift_hostname=174.138.11.213 openshift_dns_ip=174.138.11.213
+159.65.192.198 openshift_hostname=159.65.192.198 openshift_dns_ip=159.65.192.198
 
 [infra_nodes:vars]
 openshift_node_labels={'purpose': 'infra', 'region': 'primary'}
@@ -427,8 +428,8 @@ openshift_node_labels={'purpose': 'infra', 'region': 'primary'}
 
 ## App nodes
 [app_nodes]
-174.138.11.191 openshift_hostname=174.138.11.191 openshift_dns_ip=174.138.11.191
-174.138.11.192 openshift_hostname=174.138.11.192 openshift_dns_ip=174.138.11.192
+159.65.204.14 openshift_hostname=159.65.204.14 openshift_dns_ip=159.65.204.14
+174.138.13.71 openshift_hostname=174.138.13.71 openshift_dns_ip=174.138.13.71
 
 [app_nodes:vars]
 openshift_node_labels={'purpose': 'work', 'region': 'primary'}

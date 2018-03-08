@@ -3,7 +3,9 @@
 
 # Ansible settings
 ansible_ssh_user: root
-ssh_key: /root/roles/lab-ocp-inventory-gen/files/ocp_lab.pem
+ssh_key: /opt/app-root/src/.ssh/id_rsa
+ansible_python_interpreter: /usr/bin/python3
+ansible_ssh_common_args: "'-o StrictHostKeyChecking=no'"
 ansible_become: no
 debug_level: 2
 
@@ -11,7 +13,7 @@ debug_level: 2
 openshift_deployment_type: origin
 containerized: "True"
 openshift_release: "v3.7"
-openshift_image_tag: 0
+openshift_image_tag: "latest"
 openshift_pkg_version: "-3.7.0"
 
 # System containers

@@ -17,6 +17,8 @@ etcd
 ansible_user={{ ansible_ssh_user }}
 ansible_become={{ ansible_become }}
 ansible_ssh_private_key_file={{ ssh_key }}
+ansible_python_interpreter={{ ansible_python_interpreter }}
+ansible_ssh_common_args={{ ansible_ssh_common_args }}
 debug_level={{ debug_level }}
 
 ### Openshift deployment configuration
@@ -38,7 +40,7 @@ openshift_master_external_ratelimit_burst={{ openshift_master_external_ratelimit
 #openshift_master_loopback_ratelimit_burst={{ openshift_master_loopback_ratelimit_burst }}
 
 ### Docker Configuration
-openshift_docker_additional_registries={{ openshift_docker_additional_registries }}
+#openshift_docker_additional_registries={{ openshift_docker_additional_registries }}
 #openshift_docker_insecure_registries={{ openshift_docker_insecure_registries }}
 #openshift_docker_blocked_registries={{ openshift_docker_blocked_registries }}
 #openshift_docker_disable_push_dockerhub={{ openshift_docker_disable_push_dockerhub }}

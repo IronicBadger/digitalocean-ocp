@@ -1,5 +1,5 @@
 #!/bin/bash
 
 dnf update -y
-dnf install python ansible -y
+dnf install python -y
 systemctl reboot

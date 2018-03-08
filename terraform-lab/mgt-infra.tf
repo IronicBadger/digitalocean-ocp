@@ -30,8 +30,16 @@ resource "digitalocean_droplet" "jumphost" {
 
     # Copies passphrase-less private key to jumphost
     provisioner "file" {
-      source      = "/home/alex/.ssh/origin"
+      source      = "~/.ssh/origin"
       destination = "/root/.ssh/id_rsa"
+    }
+    provisioner "file" {
+      source      = "~/.ssh/origin.pub"
+      destination = "/root/.ssh/id_rsa.pub"
+    }
+    # set ssh-key permissions correctly
+    provisioner "remote-exec" {
+        script = "scripts/set_sshkey_perms.sh"
     }
 
     # https://github.com/hashicorp/terraform/issues/2811    

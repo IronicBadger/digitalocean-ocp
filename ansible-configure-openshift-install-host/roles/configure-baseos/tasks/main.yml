@@ -1,0 +1,8 @@
+---
+
+- name: configure base-os
+  include: base-os.yml
+
+- name: configure docker
+  include: configure-docker.yml
+  

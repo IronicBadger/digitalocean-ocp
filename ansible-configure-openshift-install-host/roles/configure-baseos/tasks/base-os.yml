@@ -1,0 +1,21 @@
+---
+
+- name: ensure all packages are up to date
+  dnf:
+    name: "*"
+    state: latest
+
+- name: install packages listed
+  dnf: name={{ item }} state=present
+  with_items:
+    - ansible
+    - curl
+    - git
+    - htop
+    - python
+    - screen
+    - sudo
+    - tmux
+    - tree
+    - wget
+    - libselinux-python
