@@ -1,0 +1,12 @@
+### DigitalOcean specific configuration
+do_token = "nope"
+
+### SSH Key configuration
+pub_key = "~/.ssh/id_rsa.pub"
+pvt_key = "~/.ssh/id_rsa"
+
+### DNS / Domain configuration
+domain_name = "ktz.cloud"
+
+### Cluster configuration
+cluster_name = "lab"
